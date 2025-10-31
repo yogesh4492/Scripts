@@ -46,7 +46,7 @@ while True:
     response = service.files().list(
         q=f"'{folder_id}' in parents and trashed=false",
         fields="nextPageToken, files(id, name, mimeType, size)",
-        pageSize=1000,  # max per page
+        # pageSize=1000,  # max per page
         pageToken=page_token
     ).execute()
     
