@@ -1,17 +1,20 @@
-from googleapiclient.discovery import build
+from google.auth.transport.requests import Request
+from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.errors import HttpError
 from googleapiclient.http import MediaIoBaseDownload
-from google_auth_oauthlib.flow import InstalledAppFlow
-from google.auth.transport.requests import Request
+from googleapiclient.discovery import build
 from google.auth.credentials import Credentials
 
-import os
-import pickle
+
 import typer
+import pickle
+import os
 from concurrent.futures import ThreadPoolExecutor,as_completed
+from rich.progress import Progress
 app=typer.Typer()
 scope=['https://www.googleapis.com/auth/drive']
-def authentiction():
+
+def authenticate():
     creds=[]
     if os.path.exists('token.pickle'):
         with open('token.pickle','rb') as tr:
@@ -21,14 +24,13 @@ def authentiction():
             creds.refresh(Request())
         else:
             flow=InstalledAppFlow.from_client_secrets_file('credentials.json',scope)
-            creds=flow.run_local_server(port=0)
+            creds-flow.run_local_server(port=0)
             with open('token.pickle','wb') as tw:
                 pickle.dump(creds,tw)
     return creds
-
-def list_files(service,folder_id):
-    files=[]
-    page_token= None
+def list_file(service,folder_id):
+    file=[]
+    page_token=None
     while True:
         resp=service.files().list(
             q=f"'{folder_id}' in parents and trashed=false",
@@ -40,27 +42,44 @@ def list_files(service,folder_id):
         ).execute()
         for i in resp.get('files',[]):
             if i.get('mimeType')=='application/vnd.google-apps.folder':
-                files.extend(list_files(service,i['id']))
+                file.extend(list_file(service,i['id']))
             else:
-                files.append(i)
+                file.append(i)
         page_token=resp.get('nextPageToken')
         if not page_token:
             break
-    return files
+    return file
 
+
+def list_folder(service,folder_id):
+    folder=[]
+    page_token=None
+    while True:
+        resp=service.files().list(
+            q=f"'{folder_id}' in parents and trashed=false",
+            spaces='drive',
+            fields='nextPageToken,files(id,name,mimeType,size)',
+            supportsAllDrives=True,
+            includeItemsFromAllDrives=True,
+            pageToken=page_token
+        ).execute()
+        for i in resp.get('files',[]):
+            if i.get('mimeType')=='application/vnd.google-apps.folder':
+                folder.append(i)
+        page_token=resp.get('nextPageToken')
+        if not page_token:
+            break
+    return folder
 
 @app.command()
 def main(folder_id):
-    cred=authentiction()
+    cred=authenticate()
     service=build('drive','v3',credentials=cred)
-    with ThreadPoolExecutor(max_workers=8) as ex:
-        future={ex.submit(list_files(service,folder_id))}
-        for i in as_completed(future):
-            res=i.result()
-            print(len(res))
-    # al=list_files(service,folder_id)
-    # print(len(al))
-
+    files=list_file(service,folder_id)
+    print(len(files))
+    folders=list_folder(service,folder_id)
+    print(len(folders))
 
 if __name__=="__main__":
     app()
+
