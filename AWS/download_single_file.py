@@ -9,10 +9,6 @@ app=typer.Typer()
 @app.command()
 def main(s3path):
     ls=s3path.split("/")
-    # strin="/".join(l[2:])
-    # print(strin)
-    # print(ls)
-    # print(l)
     bucket=ls[2]
     input="/".join(ls[3:])
     output=ls[-1]
