@@ -1,0 +1,17 @@
+ boto3 library of python mainly used for the work with aws s3
+
+ # instalation
+
+ pip install boto3
+
+ # sturucture of boto3 
+
+ Its has 3 main interface
+
+ interface               description                        example
+ .resources()           highlevel objectoriented api      s3=boto3.resources('s3')
+ .client()              lowlevel serviceApi               s3=boto3.client('s3')
+ .session()             represent configuration           session=boto3.Session(profile_name='default')
+                        and credentials
+
+
