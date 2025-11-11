@@ -1,6 +1,5 @@
 import os
-import typer
-app=typer.Typer()
+
 def rename_wav_files(directory):
     for filename in os.listdir(directory):
         if filename.endswith("_left.wav"):
@@ -15,9 +14,8 @@ def rename_wav_files(directory):
 
         os.rename(old_path, new_path)
         print(f"Renamed: {filename} → {new_name}")
-@app.command()
-def main(input_dir:str=typer.Argument(...,help="give the input folder that contain file")):
-    rename_wav_files(input_dir)
+
 if __name__ == "__main__":
-#     directory = input("Enter directory path: ").strip()
-    app()
+    directory = input("Enter directory path: ").strip()
+    rename_wav_files(directory)
+
