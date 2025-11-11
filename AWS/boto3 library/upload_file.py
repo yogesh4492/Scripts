@@ -13,8 +13,12 @@ s2=boto3.resource('s3')
 #     print(i.name)
 app=typer.Typer()   
 def upload_file(file,s3path):
-    bucket=os.path.split(s3path)
-    print(bucket)
+    split=s3path.split("/")
+    bucket=split[2]
+    prefix=os.path.join("/".join(split[3:]),file)
+    print(bucket,"|",prefix)
+    s3.upload_file(file,bucket,prefix)
+    
     # s3.upload_file()
 @app.command()
 def main(file,s3path):

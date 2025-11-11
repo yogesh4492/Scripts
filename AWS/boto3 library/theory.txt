@@ -15,3 +15,7 @@
                         and credentials
 
 
+download_file
+upload_file
+list_objects_v2
+paginator for large data set because the list_objects_v2 give only 1000 files list at time
