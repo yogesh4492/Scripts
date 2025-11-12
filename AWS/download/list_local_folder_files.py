@@ -18,6 +18,7 @@ def main(input_dir:str=typer.Argument(...,help="Input Directory path or name "))
     all_files_list = list_all_files_recursive(input_dir)
     print(len(all_files_list))
     
+    
 if __name__=="__main__":
     app()
 
