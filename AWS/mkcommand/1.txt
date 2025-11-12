@@ -1,0 +1,16 @@
+s3://prod-shaip-bucket/bhasha/Drone2-SSD/as/
+s3://prod-shaip-bucket/bhasha/Drone2-SSD/bn/
+s3://prod-shaip-bucket/bhasha/Drone2-SSD/da/
+s3://prod-shaip-bucket/bhasha/Drone2-SSD/do/
+s3://prod-shaip-bucket/bhasha/Drone2-SSD/en/
+s3://prod-shaip-bucket/bhasha/Drone2-SSD/fa/
+s3://prod-shaip-bucket/bhasha/Drone2-SSD/go/
+s3://prod-shaip-bucket/bhasha/Drone2-SSD/hi/
+s3://prod-shaip-bucket/bhasha/Drone2-SSD/ks/
+s3://prod-shaip-bucket/bhasha/Drone2-SSD/my/
+s3://prod-shaip-bucket/bhasha/Drone2-SSD/na/
+s3://prod-shaip-bucket/bhasha/Drone2-SSD/pa/
+s3://prod-shaip-bucket/bhasha/Drone2-SSD/ps/
+s3://prod-shaip-bucket/bhasha/Drone2-SSD/sd/
+s3://prod-shaip-bucket/bhasha/Drone2-SSD/si/
+s3://prod-shaip-bucket/bhasha/Drone2-SSD/ti/
