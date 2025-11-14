@@ -30,10 +30,7 @@ def Extract_Copy_file(file_path):
 #             part=i.strip().split("/",1)
 #             # print(part[1])
 #             list.append(part[1])
-#     return list
-    
-            
-        
+#     return list      
 app=typer.Typer()
 
 @app.command()
@@ -50,13 +47,6 @@ def main(original_file,copy_file,out_txt="nov14.txt"):
     with open(out_txt,'w') as w:
         for i in list3:
             w.write(i+"\n")
-
-    
-
-
-
-    
-    
 
 if __name__=="__main__":
     app()
