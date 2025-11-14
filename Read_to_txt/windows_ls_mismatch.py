@@ -12,15 +12,25 @@ def Extract_Original_file(file_path):
             list.append(part[2])
     return list
     
-
 def Extract_Copy_file(file_path):
-    list=[]
-    with open(file_path,'r') as rt:
-        for i in rt:
-            part=i.strip().split("/",1)
-            # print(part[1])
-            list.append(part[1])
-    return list
+    files = []
+    with open(file_path, 'r') as rt:
+        for line in rt:
+            path = line.strip().replace("\\", "/")   # Convert Windows path → Linux style
+            parts = path.split("/", 1)               # Split only once
+            if len(parts) > 1:
+                files.append(parts[1])               # Take everything after drive letter
+            else:
+                files.append(parts[0])
+    return files
+# def Extract_Copy_file(file_path):
+#     list=[]
+#     with open(file_path,'r') as rt:
+#         for i in rt:
+#             part=i.strip().split("/",1)
+#             # print(part[1])
+#             list.append(part[1])
+#     return list
     
             
         

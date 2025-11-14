@@ -1,4 +1,3 @@
-
 data-delivery/
 data-delivery/batch1/
 data-delivery/batch10/
