@@ -41,13 +41,6 @@ def main(original_file,copy_file,out_txt="nov14.txt"):
         for i in list3:
             w.write(i+"\n")
 
-    
-
-
-
-    
-    
-
 if __name__=="__main__":
     app()
 
