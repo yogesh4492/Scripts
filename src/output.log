@@ -1,0 +1,4 @@
+[2025-11-19 14:11:41,867] [INFO] [commands.extract_details.SwarCommand]: Executing Tsv Details Extract Command
+[2025-11-19 14:11:41,869] [INFO] [commands.extract_details.SwarCommand]: s3path='s3://shaip-production-bucket/eztrans/EZBS/data/BH/audio/106/20190611/' output_csv='ou.csv'
+[2025-11-19 14:11:41,870] [DEBUG] [common.aws_fs_helper.AwsS3FsHelper]: Getting files from path_fragment=s3://shaip-production-bucket/eztrans/EZBS/data/BH/audio/106/20190611/
+[2025-11-19 14:13:10,505] [INFO] [common.job_engine.Executor]: Total Jobs: 20, Jobs with error: 0

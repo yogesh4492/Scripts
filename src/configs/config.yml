@@ -1,0 +1,6 @@
+environment: ${ENVIRONMENT:local}
+
+
+prepare_batch:
+  to_bucket: "prod-shaip-bucket"
+  base_batch_prefix: "projects/usa-224/data-approved/"
