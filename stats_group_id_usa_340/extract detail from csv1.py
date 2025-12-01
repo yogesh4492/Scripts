@@ -1,6 +1,5 @@
 import csv
 import typer
-import time
 from collections import deque
 app=typer.Typer()
 class Main:
