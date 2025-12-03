@@ -1,0 +1,26 @@
+function copyFolder() {
+  var sourceFolderId = "1GGaGS_-FiMXDVQUipJ1Z9nnwRN2t_w3n";   // replace
+  var targetFolderId = "1ax0SaUd94vi_R9AQZA1o6WR7_c9l4vmo";   // replace
+
+  var source = DriveApp.getFolderById(sourceFolderId);
+  var target = DriveApp.getFolderById(targetFolderId);
+
+  copyAll(source, target);
+}
+
+function copyAll(source, target) {
+  // Copy all files
+  var files = source.getFiles();
+  while (files.hasNext()) {
+    var file = files.next();
+    file.makeCopy(file.getName(), target);
+  }
+
+  // Copy subfolders
+  var folders = source.getFolders();
+  while (folders.hasNext()) {
+    var sub = folders.next();
+    var newSub = target.createFolder(sub.getName());
+    copyAll(sub, newSub);
+  }
+}
