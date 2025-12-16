@@ -39,7 +39,7 @@ def total_files(folder_id,service):
         resp=service.files().list(
             q=f"'{folder_id}' in parents and trashed=false",
             spaces="drive",
-            fields="nextPageToken,files(id,name,mimeType,size,webViewLink)",
+            fields="nextPageToken,files(id,name,mimeType,size,webViewLink,webContentLink)",
             supportsAllDrives=True,
             includeItemsFromAllDrives=True,
             pageToken=page_token
